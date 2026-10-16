@@ -55,7 +55,8 @@ function validate() {
 const mask = (v) => (v ? `${v.slice(0, 8)}…(${v.length} chars)` : '(vazio)');
 function summary() {
   return {
-    ambiente: prefix(mp.accessToken) === 'TEST' ? 'teste' : prefix(mp.accessToken) ? 'produção' : 'indefinido',
+    // O prefixo APP_USR- vale para teste e produção, então não dá para inferir o ambiente só por ele.
+    ambiente: prefix(mp.accessToken) === 'TEST' ? 'teste' : prefix(mp.accessToken) ? 'APP_USR (confirme se é conta de teste)' : 'indefinido',
     publicKey: mask(mp.publicKey),
     accessToken: mask(mp.accessToken),
     clientId: mp.clientId ? mask(mp.clientId) : '(vazio)',
